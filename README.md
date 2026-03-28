@@ -85,19 +85,62 @@ ollama pull qwen3:14b
 ollama run glm-4.7-flash "Hello"
 ```
 
-## 📊 Estrategias Implementadas
+## 🤖 IA Local con Ollama
 
-### 1. Market Rebalancing Arbitrage
-- Detecta cuando YES + NO ≠ $1.00
-- Compra ambos lados para ganancia sin riesgo
+Este proyecto usa **Ollama** para análisis con IA local - **¡100% gratis!**
 
-### 2. Mispricing Detection
-- Analiza eventos con IA para estimar probabilidad real
-- Compra/vende cuando el precio del mercado difiere significativamente
+Modelos disponibles:
+- **glm-4.7-flash** (19GB) - Principal, mejor razonamiento
+- **qwen3:14b** (9.3GB) - Fallback, buen modelo local
+- **llama3** (4.7GB) - Alternativa ligera
 
-### 3. Sentiment Analysis
-- Monitorea noticias y eventos en tiempo real
-- Identifica movimientos de precio antes de que se materialicen
+```bash
+# Instalar Ollama si no lo tienes
+# Ver: https://ollama.ai
+
+# Descargar modelos necesarios
+ollama pull glm-4.7-flash
+ollama pull qwen3:14b
+
+# Verificar que funciona
+ollama run glm-4.7-flash "Hello"
+```
+
+## 📊 Modo Simulación
+
+**IMPORTANTE**: Siempre prueba primero en modo simulación:
+
+```bash
+# Simulación de 30 minutos con $100 ficticios
+python run_simulation.py --capital 100 --duration 30
+
+# Simulación rápida de 5 minutos
+python run_simulation.py --quick
+
+# Solo estrategia de arbitraje
+python run_simulation.py --strategies arbitrage --capital 50
+
+# Arbitraje + mispricing
+python run_simulation.py --strategies arbitrage,mispricing --capital 100
+
+# Con logs detallados
+python run_simulation.py --verbose
+```
+
+### Resultados de Simulación
+
+El modo simulación genera:
+- Estadísticas de rendimiento (PnL, win rate, Sharpe ratio)
+- Historial de trades en `data/simulations/`
+- Equity curve y drawdown
+
+## 📖 Guía de Configuración Polymarket
+
+Ver [SETUP.md](SETUP.md) para instrucciones detalladas de:
+1. Crear wallet MetaMask
+2. Obtener USDC en Polygon
+3. Crear cuenta Polymarket
+4. Exportar private key para el bot
 
 ## ⚙️ Configuración
 
@@ -145,6 +188,12 @@ polymarket-ai-trader/
 ## ⚠️ Disclaimer
 
 Este bot es para uso educativo y de investigación. El trading en mercados de predicción conlleva riesgos significativos. Nunca inviertas más de lo que puedes perder.
+
+## 📚 Recursos
+
+- [Polymarket Docs](https://docs.polymarket.com/)
+- [py-clob-client](https://github.com/Polymarket/py-clob-client)
+- [Gamma API](https://gamma-api.polymarket.com)s para uso educativo y de investigación. El trading en mercados de predicción conlleva riesgos significativos. Nunca inviertas más de lo que puedes perder.
 
 ## 📚 Recursos
 

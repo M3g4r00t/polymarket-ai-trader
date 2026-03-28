@@ -47,6 +47,10 @@ logs/
 data/
 *.json
 
+# Simulation results
+simulations/
+results/
+
 # Secrets
 secrets.yaml
 secrets.yml
