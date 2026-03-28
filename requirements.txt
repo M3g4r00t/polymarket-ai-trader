@@ -1,0 +1,34 @@
+# Polymarket AI Trader Dependencies
+
+# Core Polymarket
+py-clob-client>=0.1.0
+web3>=6.0.0
+
+# Async HTTP
+aiohttp>=3.8.0
+httpx>=0.24.0
+websockets>=11.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Validation & Config
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+pyyaml>=6.0
+
+# Logging
+structlog>=23.0.0
+rich>=13.0.0
+
+# AI/ML (optional)
+# openai>=1.0.0
+# anthropic>=0.18.0
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+
+# CLI
+click>=8.0.0

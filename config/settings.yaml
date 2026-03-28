@@ -1,0 +1,195 @@
+# Polymarket AI Trader Configuration
+
+# ===========================================
+# Trading Settings
+# ===========================================
+trading:
+  # Minimum trade size in USD
+  min_trade_size_usd: 1.0
+  
+  # Maximum trade size in USD (start small)
+  max_trade_size_usd: 10.0
+  
+  # Maximum position size per market in USD
+  max_position_size_usd: 50.0
+  
+  # Maximum total exposure across all positions
+  max_total_exposure_usd: 200
+  
+  # Maximum number of open positions
+  max_open_positions: 10
+  
+  # Cooldown between trades on same market (minutes)
+  cooldown_minutes: 5
+  
+  # Default order type
+  default_order_type: GTC  # GTC, GTD, FOK, FAK
+
+# ===========================================
+# Strategy Settings
+# ===========================================
+strategies:
+  arbitrage:
+    enabled: true
+    # Minimum spread to trigger arbitrage (YES + NO < $1 - spread)
+    min_spread_usd: 0.02  # 2 cents
+    
+    # Minimum profit percentage after fees
+    min_profit_pct: 0.02  # 2%
+    
+    # Markets to exclude (by slug or id)
+    exclude_markets: []
+    
+    # Only trade markets with minimum liquidity
+    min_liquidity_usd: 1000
+    
+  mispricing:
+    enabled: true  # Now using local Ollama (free!)
+    
+    # Minimum price deviation to act
+    min_deviation_pct: 0.10  # 10%
+    
+    # Confidence threshold from AI
+    min_confidence: "medium"  # low, medium, high
+    
+    # Maximum markets to analyze per cycle
+    max_markets_per_cycle: 5
+    
+    # Use Ollama (local, free) instead of cloud APIs
+    use_ollama: true
+    
+    # Ollama models (primary and fallback)
+    ollama_model: "glm-4.7-flash"
+    ollama_fallback: "qwen3:14b"
+    
+    # Analysis budget per day (higher for local)
+    max_api_calls_per_day: 1000
+
+# ===========================================
+# Risk Management
+# ===========================================
+risk:
+  # Stop loss percentage
+  stop_loss_pct: 0.15  # 15%
+  
+  # Take profit percentage
+  take_profit_pct: 0.05  # 5%
+  
+  # Maximum daily loss in USD
+  max_daily_loss_usd: 20
+  
+  # Maximum consecutive losses before pause
+  max_consecutive_losses: 3
+  
+  # Pause duration after max losses (minutes)
+  pause_after_losses_minutes: 60
+  
+  # Trailing stop enabled
+  trailing_stop: true
+  
+  # Trailing stop percentage
+  trailing_stop_pct: 0.03  # 3%
+
+# ===========================================
+# AI Integration
+# ===========================================
+ai:
+  enabled: false
+  
+  # Provider: openai, anthropic
+  provider: openai
+  
+  # Model for probability estimation
+  estimation_model: "gpt-4o-mini"
+  
+  # Model for sentiment analysis
+  sentiment_model: "gpt-4o-mini"
+  
+  # Max tokens for analysis
+  max_tokens: 500
+  
+  # Temperature (lower = more deterministic)
+  temperature: 0.3
+
+# ===========================================
+# Data Fetching
+# ===========================================
+data:
+  # Polling interval for market data (seconds)
+  poll_interval_seconds: 30
+  
+  # Use WebSocket for real-time updates
+  use_websocket: true
+  
+  # Markets to monitor (empty = all active)
+  watch_markets: []
+  
+  # Categories to focus on
+  categories:
+    - "Politics"
+    - "Crypto"
+    - "Sports"
+  
+  # Exclude categories
+  exclude_categories:
+    - "Entertainment"  # Often low liquidity
+
+# ===========================================
+# Notifications
+# ===========================================
+notifications:
+  # Enable notifications
+  enabled: false
+  
+  # Notify on trade execution
+  on_trade: true
+  
+  # Notify on position closed
+  on_position_closed: true
+  
+  # Notify on stop loss triggered
+  on_stop_loss: true
+  
+  # Notify on daily summary
+  on_daily_summary: true
+  
+  # Telegram settings
+  telegram:
+    enabled: false
+    bot_token: ""
+    chat_id: ""
+
+# ===========================================
+# Logging
+# ===========================================
+logging:
+  level: "INFO"
+  
+  # Log to file
+  file_enabled: true
+  file_path: "logs/trader.log"
+  
+  # Log to console
+  console_enabled: true
+  
+  # Structured JSON logs
+  json_format: false
+  
+  # Include trade details in logs
+  include_trade_details: true
+
+# ===========================================
+# Performance Tracking
+# ===========================================
+tracking:
+  # Record all trades
+  record_trades: true
+  
+  # Trade history file
+  trade_history_path: "data/trades.json"
+  
+  # Calculate and report metrics
+  report_metrics: true
+  
+  # Metrics reporting interval (minutes)
+  metrics_interval: 60s_interval: 60
