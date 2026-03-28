@@ -192,4 +192,4 @@ tracking:
   report_metrics: true
   
   # Metrics reporting interval (minutes)
-  metrics_interval: 60s_interval: 60
+  metrics_interval: 60s_interval: 60  max_position_size: 5000
